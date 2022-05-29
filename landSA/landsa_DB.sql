@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="js/vendor/codemirror/lib/codemirror.css?v=5.1.3">
     <link rel="stylesheet" type="text/css" href="js/vendor/codemirror/addon/hint/show-hint.css?v=5.1.3">
     <link rel="stylesheet" type="text/css" href="js/vendor/codemirror/addon/lint/lint.css?v=5.1.3">
-    <link rel="stylesheet" type="text/css" href="./themes/pmahomme/css/theme.css?v=5.1.3&nocache=4247050472ltr&server=1">
+    <link rel="stylesheet" type="text/css" href="./themes/pmahomme/css/theme.css?v=5.1.3&nocache=1598031653ltr&server=1">
     <link rel="stylesheet" type="text/css" href="./themes/pmahomme/css/printview.css?v=5.1.3" media="print" id="printcss">
     <title>localhost / localhost | phpMyAdmin 5.1.3</title>
     <script data-cfasync="false" type="text/javascript" src="js/vendor/jquery/jquery.min.js?v=5.1.3"></script>
@@ -260,7 +260,7 @@ $(function() {
       </div>
       <div id="pma_navigation_tree" class="list_container synced highlight autoexpand">
 
-  <div class="pma_quick_warp"><div class="drop_list"><button title="Recent tables" class="drop_button btn">Recent</button><ul id="pma_recent_list"><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=landrecord">`landsa_DB`.`landrecord`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=landinfo">`landsa_DB`.`landinfo`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=UsersLands">`landsa_DB`.`UsersLands`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=landsonsale">`landsa_DB`.`landsonsale`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=map">`landsa_DB`.`map`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=users">`landsa_DB`.`users`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=inheritancerecord">`landsa_DB`.`inheritancerecord`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=searchengine">`landsa_DB`.`searchengine`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=bill">`landsa_DB`.`bill`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=offers">`landsa_DB`.`offers`</a></li></ul></div><div class="drop_list"><button title="Favorite tables" class="drop_button btn">Favorites</button><ul id="pma_favorite_list"><li class="warp_link">There are no favorite tables.</li></ul></div><div class="clearfloat"></div></div>
+  <div class="pma_quick_warp"><div class="drop_list"><button title="Recent tables" class="drop_button btn">Recent</button><ul id="pma_recent_list"><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=landrecord">`landsa_DB`.`landrecord`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=inheritancerecord">`landsa_DB`.`inheritancerecord`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=giftrecord">`landsa_DB`.`giftrecord`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=users">`landsa_DB`.`users`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=offers">`landsa_DB`.`offers`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=landsonsale">`landsa_DB`.`landsonsale`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=map">`landsa_DB`.`map`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=landinfo">`landsa_DB`.`landinfo`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=UsersLands">`landsa_DB`.`UsersLands`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=landsa_DB&table=bill">`landsa_DB`.`bill`</a></li></ul></div><div class="drop_list"><button title="Favorite tables" class="drop_button btn">Favorites</button><ul id="pma_favorite_list"><li class="warp_link">There are no favorite tables.</li></ul></div><div class="clearfloat"></div></div>
 
 <div class="clearfloat"></div>
 
@@ -562,7 +562,7 @@ $.extend(defaultValues, {
                         Press Enter to execute query                    </span>
                 </div>
                                                             <div class="message history collapsed hide select"
-                            targetdb="landsa_DB" targettable="landinfo">
+                            targetdb="landsa_DB" targettable="landrecord">
                             <div class="action_content">
                     <span class="action collapse">
             Collapse
@@ -597,121 +597,7 @@ $.extend(defaultValues, {
                             : <span>During current session</span>
                     </span>
             </div>
-                            <span class="query">SELECT * FROM `landinfo`</span>
-                        </div>
-                                            <div class="message history collapsed hide"
-                            targetdb="landsa_DB" targettable="landinfo">
-                            <div class="action_content">
-                    <span class="action collapse">
-            Collapse
-                    </span>
-                            <span class="action expand">
-            Expand
-                    </span>
-                            <span class="action requery">
-            Requery
-                    </span>
-                            <span class="action edit">
-            Edit
-                    </span>
-                            <span class="action explain">
-            Explain
-                    </span>
-                            <span class="action profiling">
-            Profiling
-                    </span>
-                            <span class="action bookmark">
-            Bookmark
-                    </span>
-                            <span class="text failed">
-            Query failed
-                    </span>
-                            <span class="text targetdb">
-            Database
-                            : <span>landsa_DB</span>
-                    </span>
-                            <span class="text query_time">
-            Queried time
-                            : <span>During current session</span>
-                    </span>
-            </div>
-                            <span class="query">INSERT INTO `landinfo` (`REUN`, `spaceInNumbers`, `spaceInWriting`, `bordersNorth`, `bordersSouth`, `bordersEast`, `bordersWest`, `lengthNorth`, `lengthSouth`, `lengthEast`, `lengthWest`, `LatitudeA`, `LatitudeB`, `LatitudeC`, `LatitudeD`, `LongitudeA`, `LongitudeB`, `LongitudeC`, `LongitudeD`, `angleA`, `angleB`, `angleC`, `angleD`) VALUES (&#039;123&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;);</span>
-                        </div>
-                                            <div class="message history collapsed hide select"
-                            targetdb="landsa_DB" targettable="map">
-                            <div class="action_content">
-                    <span class="action collapse">
-            Collapse
-                    </span>
-                            <span class="action expand">
-            Expand
-                    </span>
-                            <span class="action requery">
-            Requery
-                    </span>
-                            <span class="action edit">
-            Edit
-                    </span>
-                            <span class="action explain">
-            Explain
-                    </span>
-                            <span class="action profiling">
-            Profiling
-                    </span>
-                            <span class="action bookmark">
-            Bookmark
-                    </span>
-                            <span class="text failed">
-            Query failed
-                    </span>
-                            <span class="text targetdb">
-            Database
-                            : <span>landsa_DB</span>
-                    </span>
-                            <span class="text query_time">
-            Queried time
-                            : <span>During current session</span>
-                    </span>
-            </div>
-                            <span class="query">SELECT * FROM `map`</span>
-                        </div>
-                                            <div class="message history collapsed hide"
-                            targetdb="landsa_DB" targettable="map">
-                            <div class="action_content">
-                    <span class="action collapse">
-            Collapse
-                    </span>
-                            <span class="action expand">
-            Expand
-                    </span>
-                            <span class="action requery">
-            Requery
-                    </span>
-                            <span class="action edit">
-            Edit
-                    </span>
-                            <span class="action explain">
-            Explain
-                    </span>
-                            <span class="action profiling">
-            Profiling
-                    </span>
-                            <span class="action bookmark">
-            Bookmark
-                    </span>
-                            <span class="text failed">
-            Query failed
-                    </span>
-                            <span class="text targetdb">
-            Database
-                            : <span>landsa_DB</span>
-                    </span>
-                            <span class="text query_time">
-            Queried time
-                            : <span>During current session</span>
-                    </span>
-            </div>
-                            <span class="query">INSERT INTO `map` (`REUN`, `latitude`, `longitude`) VALUES (&#039;123&#039;, &#039;&#039;, &#039;&#039;);</span>
+                            <span class="query">SELECT * FROM `landrecord`</span>
                         </div>
                                             <div class="message history collapsed hide select"
                             targetdb="landsa_DB" targettable="map">
@@ -752,7 +638,7 @@ $.extend(defaultValues, {
                             <span class="query">SELECT * FROM `map`</span>
                         </div>
                                             <div class="message history collapsed hide select"
-                            targetdb="landsa_DB" targettable="landinfo">
+                            targetdb="landsa_DB" targettable="map">
                             <div class="action_content">
                     <span class="action collapse">
             Collapse
@@ -787,7 +673,83 @@ $.extend(defaultValues, {
                             : <span>During current session</span>
                     </span>
             </div>
-                            <span class="query">SELECT * FROM `landinfo`</span>
+                            <span class="query">SELECT * FROM `map`</span>
+                        </div>
+                                            <div class="message history collapsed hide select"
+                            targetdb="landsa_DB" targettable="inheritancerecord">
+                            <div class="action_content">
+                    <span class="action collapse">
+            Collapse
+                    </span>
+                            <span class="action expand">
+            Expand
+                    </span>
+                            <span class="action requery">
+            Requery
+                    </span>
+                            <span class="action edit">
+            Edit
+                    </span>
+                            <span class="action explain">
+            Explain
+                    </span>
+                            <span class="action profiling">
+            Profiling
+                    </span>
+                            <span class="action bookmark">
+            Bookmark
+                    </span>
+                            <span class="text failed">
+            Query failed
+                    </span>
+                            <span class="text targetdb">
+            Database
+                            : <span>landsa_DB</span>
+                    </span>
+                            <span class="text query_time">
+            Queried time
+                            : <span>During current session</span>
+                    </span>
+            </div>
+                            <span class="query">SELECT * FROM `inheritancerecord`</span>
+                        </div>
+                                            <div class="message history collapsed hide select"
+                            targetdb="landsa_DB" targettable="inheritancerecord">
+                            <div class="action_content">
+                    <span class="action collapse">
+            Collapse
+                    </span>
+                            <span class="action expand">
+            Expand
+                    </span>
+                            <span class="action requery">
+            Requery
+                    </span>
+                            <span class="action edit">
+            Edit
+                    </span>
+                            <span class="action explain">
+            Explain
+                    </span>
+                            <span class="action profiling">
+            Profiling
+                    </span>
+                            <span class="action bookmark">
+            Bookmark
+                    </span>
+                            <span class="text failed">
+            Query failed
+                    </span>
+                            <span class="text targetdb">
+            Database
+                            : <span>landsa_DB</span>
+                    </span>
+                            <span class="text query_time">
+            Queried time
+                            : <span>During current session</span>
+                    </span>
+            </div>
+                            <span class="query">SELECT * FROM `inheritancerecord`</span>
                         </div>
                                             <div class="message history collapsed hide select"
                             targetdb="landsa_DB" targettable="landrecord">
@@ -828,7 +790,7 @@ $.extend(defaultValues, {
                             <span class="query">SELECT * FROM `landrecord`</span>
                         </div>
                                             <div class="message history collapsed hide select"
-                            targetdb="landsa_DB" targettable="landsonsale">
+                            targetdb="landsa_DB" targettable="offers">
                             <div class="action_content">
                     <span class="action collapse">
             Collapse
@@ -863,10 +825,10 @@ $.extend(defaultValues, {
                             : <span>During current session</span>
                     </span>
             </div>
-                            <span class="query">SELECT * FROM `landsonsale`</span>
+                            <span class="query">SELECT * FROM `offers`</span>
                         </div>
-                                            <div class="message history collapsed hide"
-                            targetdb="landsa_DB" targettable="landsonsale">
+                                            <div class="message history collapsed hide select"
+                            targetdb="landsa_DB" targettable="offers">
                             <div class="action_content">
                     <span class="action collapse">
             Collapse
@@ -901,7 +863,7 @@ $.extend(defaultValues, {
                             : <span>During current session</span>
                     </span>
             </div>
-                            <span class="query">INSERT INTO `landsonsale` (`REUN`, `price`) VALUES (&#039;123&#039;, &#039;54321\r\n&#039;);</span>
+                            <span class="query">SELECT * FROM `offers`</span>
                         </div>
                                             <div class="message history collapsed hide select"
                             targetdb="landsa_DB" targettable="landsonsale">
@@ -980,7 +942,7 @@ $.extend(defaultValues, {
                             <span class="query">SELECT * FROM `landrecord`</span>
                         </div>
                                             <div class="message history collapsed hide select"
-                            targetdb="landsa_DB" targettable="landinfo">
+                            targetdb="landsa_DB" targettable="landrecord">
                             <div class="action_content">
                     <span class="action collapse">
             Collapse
@@ -1015,7 +977,83 @@ $.extend(defaultValues, {
                             : <span>During current session</span>
                     </span>
             </div>
-                            <span class="query">SELECT * FROM `landinfo`</span>
+                            <span class="query">SELECT * FROM `landrecord`</span>
+                        </div>
+                                            <div class="message history collapsed hide select"
+                            targetdb="landsa_DB" targettable="offers">
+                            <div class="action_content">
+                    <span class="action collapse">
+            Collapse
+                    </span>
+                            <span class="action expand">
+            Expand
+                    </span>
+                            <span class="action requery">
+            Requery
+                    </span>
+                            <span class="action edit">
+            Edit
+                    </span>
+                            <span class="action explain">
+            Explain
+                    </span>
+                            <span class="action profiling">
+            Profiling
+                    </span>
+                            <span class="action bookmark">
+            Bookmark
+                    </span>
+                            <span class="text failed">
+            Query failed
+                    </span>
+                            <span class="text targetdb">
+            Database
+                            : <span>landsa_DB</span>
+                    </span>
+                            <span class="text query_time">
+            Queried time
+                            : <span>During current session</span>
+                    </span>
+            </div>
+                            <span class="query">SELECT * FROM `offers`</span>
+                        </div>
+                                            <div class="message history collapsed hide select"
+                            targetdb="landsa_DB" targettable="landsonsale">
+                            <div class="action_content">
+                    <span class="action collapse">
+            Collapse
+                    </span>
+                            <span class="action expand">
+            Expand
+                    </span>
+                            <span class="action requery">
+            Requery
+                    </span>
+                            <span class="action edit">
+            Edit
+                    </span>
+                            <span class="action explain">
+            Explain
+                    </span>
+                            <span class="action profiling">
+            Profiling
+                    </span>
+                            <span class="action bookmark">
+            Bookmark
+                    </span>
+                            <span class="text failed">
+            Query failed
+                    </span>
+                            <span class="text targetdb">
+            Database
+                            : <span>landsa_DB</span>
+                    </span>
+                            <span class="text query_time">
+            Queried time
+                            : <span>During current session</span>
+                    </span>
+            </div>
+                            <span class="query">SELECT * FROM `landsonsale`</span>
                         </div>
                                             <div class="message history collapsed hide select"
                             targetdb="landsa_DB" targettable="landrecord">
@@ -1056,7 +1094,7 @@ $.extend(defaultValues, {
                             <span class="query">SELECT * FROM `landrecord`</span>
                         </div>
                                             <div class="message history collapsed hide select"
-                            targetdb="landsa_DB" targettable="landrecord">
+                            targetdb="landsa_DB" targettable="inheritancerecord">
                             <div class="action_content">
                     <span class="action collapse">
             Collapse
@@ -1091,10 +1129,10 @@ $.extend(defaultValues, {
                             : <span>During current session</span>
                     </span>
             </div>
-                            <span class="query">SELECT * FROM `landrecord`</span>
+                            <span class="query">SELECT * FROM `inheritancerecord`</span>
                         </div>
                                             <div class="message history collapsed hide select"
-                            targetdb="landsa_DB" targettable="landinfo">
+                            targetdb="landsa_DB" targettable="giftrecord">
                             <div class="action_content">
                     <span class="action collapse">
             Collapse
@@ -1129,48 +1167,10 @@ $.extend(defaultValues, {
                             : <span>During current session</span>
                     </span>
             </div>
-                            <span class="query">SELECT * FROM `landinfo`</span>
-                        </div>
-                                            <div class="message history collapsed hide"
-                            targetdb="landsa_DB" targettable="landinfo">
-                            <div class="action_content">
-                    <span class="action collapse">
-            Collapse
-                    </span>
-                            <span class="action expand">
-            Expand
-                    </span>
-                            <span class="action requery">
-            Requery
-                    </span>
-                            <span class="action edit">
-            Edit
-                    </span>
-                            <span class="action explain">
-            Explain
-                    </span>
-                            <span class="action profiling">
-            Profiling
-                    </span>
-                            <span class="action bookmark">
-            Bookmark
-                    </span>
-                            <span class="text failed">
-            Query failed
-                    </span>
-                            <span class="text targetdb">
-            Database
-                            : <span>landsa_DB</span>
-                    </span>
-                            <span class="text query_time">
-            Queried time
-                            : <span>During current session</span>
-                    </span>
-            </div>
-                            <span class="query">INSERT INTO `landinfo` (`REUN`, `spaceInNumbers`, `spaceInWriting`, `bordersNorth`, `bordersSouth`, `bordersEast`, `bordersWest`, `lengthNorth`, `lengthSouth`, `lengthEast`, `lengthWest`, `LatitudeA`, `LatitudeB`, `LatitudeC`, `LatitudeD`, `LongitudeA`, `LongitudeB`, `LongitudeC`, `LongitudeD`, `angleA`, `angleB`, `angleC`, `angleD`) VALUES (&#039;7352874477&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;);</span>
+                            <span class="query">SELECT * FROM `giftrecord`</span>
                         </div>
                                             <div class="message history collapsed hide select"
-                            targetdb="landsa_DB" targettable="landinfo">
+                            targetdb="landsa_DB" targettable="landsonsale">
                             <div class="action_content">
                     <span class="action collapse">
             Collapse
@@ -1205,83 +1205,7 @@ $.extend(defaultValues, {
                             : <span>During current session</span>
                     </span>
             </div>
-                            <span class="query">SELECT * FROM `landinfo`</span>
-                        </div>
-                                            <div class="message history collapsed hide"
-                            targetdb="landsa_DB" targettable="landinfo">
-                            <div class="action_content">
-                    <span class="action collapse">
-            Collapse
-                    </span>
-                            <span class="action expand">
-            Expand
-                    </span>
-                            <span class="action requery">
-            Requery
-                    </span>
-                            <span class="action edit">
-            Edit
-                    </span>
-                            <span class="action explain">
-            Explain
-                    </span>
-                            <span class="action profiling">
-            Profiling
-                    </span>
-                            <span class="action bookmark">
-            Bookmark
-                    </span>
-                            <span class="text failed">
-            Query failed
-                    </span>
-                            <span class="text targetdb">
-            Database
-                            : <span>landsa_DB</span>
-                    </span>
-                            <span class="text query_time">
-            Queried time
-                            : <span>During current session</span>
-                    </span>
-            </div>
-                            <span class="query">INSERT INTO `landinfo` (`REUN`, `spaceInNumbers`, `spaceInWriting`, `bordersNorth`, `bordersSouth`, `bordersEast`, `bordersWest`, `lengthNorth`, `lengthSouth`, `lengthEast`, `lengthWest`, `LatitudeA`, `LatitudeB`, `LatitudeC`, `LatitudeD`, `LongitudeA`, `LongitudeB`, `LongitudeC`, `LongitudeD`, `angleA`, `angleB`, `angleC`, `angleD`, `ElectronicTitleDeed`) VALUES (&#039;7352874477&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, &#039;&#039;, NULL);</span>
-                        </div>
-                                            <div class="message history collapsed hide select"
-                            targetdb="landsa_DB" targettable="landinfo">
-                            <div class="action_content">
-                    <span class="action collapse">
-            Collapse
-                    </span>
-                            <span class="action expand">
-            Expand
-                    </span>
-                            <span class="action requery">
-            Requery
-                    </span>
-                            <span class="action edit">
-            Edit
-                    </span>
-                            <span class="action explain">
-            Explain
-                    </span>
-                            <span class="action profiling">
-            Profiling
-                    </span>
-                            <span class="action bookmark">
-            Bookmark
-                    </span>
-                            <span class="text failed">
-            Query failed
-                    </span>
-                            <span class="text targetdb">
-            Database
-                            : <span>landsa_DB</span>
-                    </span>
-                            <span class="text query_time">
-            Queried time
-                            : <span>During current session</span>
-                    </span>
-            </div>
-                            <span class="query">SELECT * FROM `landinfo`</span>
+                            <span class="query">SELECT * FROM `landsonsale`</span>
                         </div>
                                             <div class="message history collapsed hide select"
                             targetdb="landsa_DB" targettable="landrecord">
@@ -1322,7 +1246,7 @@ $.extend(defaultValues, {
                             <span class="query">SELECT * FROM `landrecord`</span>
                         </div>
                                             <div class="message history collapsed hide select"
-                            targetdb="landsa_DB" targettable="landinfo">
+                            targetdb="landsa_DB" targettable="giftrecord">
                             <div class="action_content">
                     <span class="action collapse">
             Collapse
@@ -1357,10 +1281,10 @@ $.extend(defaultValues, {
                             : <span>During current session</span>
                     </span>
             </div>
-                            <span class="query">SELECT * FROM `landinfo`</span>
+                            <span class="query">SELECT * FROM `giftrecord`</span>
                         </div>
                                             <div class="message history collapsed hide select"
-                            targetdb="landsa_DB" targettable="landrecord">
+                            targetdb="landsa_DB" targettable="inheritancerecord">
                             <div class="action_content">
                     <span class="action collapse">
             Collapse
@@ -1395,10 +1319,10 @@ $.extend(defaultValues, {
                             : <span>During current session</span>
                     </span>
             </div>
-                            <span class="query">SELECT * FROM `landrecord`</span>
+                            <span class="query">SELECT * FROM `inheritancerecord`</span>
                         </div>
                                             <div class="message history collapsed hide select"
-                            targetdb="landsa_DB" targettable="UsersLands">
+                            targetdb="landsa_DB" targettable="offers">
                             <div class="action_content">
                     <span class="action collapse">
             Collapse
@@ -1433,10 +1357,10 @@ $.extend(defaultValues, {
                             : <span>During current session</span>
                     </span>
             </div>
-                            <span class="query">SELECT * FROM `UsersLands`</span>
+                            <span class="query">SELECT * FROM `offers`</span>
                         </div>
                                             <div class="message history collapsed hide select"
-                            targetdb="landsa_DB" targettable="landinfo">
+                            targetdb="landsa_DB" targettable="users">
                             <div class="action_content">
                     <span class="action collapse">
             Collapse
@@ -1471,7 +1395,83 @@ $.extend(defaultValues, {
                             : <span>During current session</span>
                     </span>
             </div>
-                            <span class="query">SELECT * FROM `landinfo`</span>
+                            <span class="query">SELECT * FROM `users`</span>
+                        </div>
+                                            <div class="message history collapsed hide select"
+                            targetdb="landsa_DB" targettable="giftrecord">
+                            <div class="action_content">
+                    <span class="action collapse">
+            Collapse
+                    </span>
+                            <span class="action expand">
+            Expand
+                    </span>
+                            <span class="action requery">
+            Requery
+                    </span>
+                            <span class="action edit">
+            Edit
+                    </span>
+                            <span class="action explain">
+            Explain
+                    </span>
+                            <span class="action profiling">
+            Profiling
+                    </span>
+                            <span class="action bookmark">
+            Bookmark
+                    </span>
+                            <span class="text failed">
+            Query failed
+                    </span>
+                            <span class="text targetdb">
+            Database
+                            : <span>landsa_DB</span>
+                    </span>
+                            <span class="text query_time">
+            Queried time
+                            : <span>During current session</span>
+                    </span>
+            </div>
+                            <span class="query">SELECT * FROM `giftrecord`</span>
+                        </div>
+                                            <div class="message history collapsed hide select"
+                            targetdb="landsa_DB" targettable="inheritancerecord">
+                            <div class="action_content">
+                    <span class="action collapse">
+            Collapse
+                    </span>
+                            <span class="action expand">
+            Expand
+                    </span>
+                            <span class="action requery">
+            Requery
+                    </span>
+                            <span class="action edit">
+            Edit
+                    </span>
+                            <span class="action explain">
+            Explain
+                    </span>
+                            <span class="action profiling">
+            Profiling
+                    </span>
+                            <span class="action bookmark">
+            Bookmark
+                    </span>
+                            <span class="text failed">
+            Query failed
+                    </span>
+                            <span class="text targetdb">
+            Database
+                            : <span>landsa_DB</span>
+                    </span>
+                            <span class="text query_time">
+            Queried time
+                            : <span>During current session</span>
+                    </span>
+            </div>
+                            <span class="query">SELECT * FROM `inheritancerecord`</span>
                         </div>
                                             <div class="message history collapsed hide select"
                             targetdb="landsa_DB" targettable="landrecord">
