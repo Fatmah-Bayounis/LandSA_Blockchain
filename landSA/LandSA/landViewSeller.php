@@ -1,84 +1,70 @@
 <?php
-    #Check the connections with the server and DB
+    //#Check the connections with the server and DB
     session_start();
 	if(isset($_SESSION['loggedUser']) && $_SESSION['loggedUser']==true){
 		include "./components/connection.php";
+		include "components/methods.php";
+
 		if ($_SERVER["REQUEST_METHOD"]=="GET"){
 			$REUN = $_GET['REUN'];		
 		}
 
-		$viewLand = "SELECT * FROM landrecord NATURAL JOIN landinfo WHERE REUN = $REUN AND landrecord.REUN=landinfo.REUN;";
-		$result = mysqli_query($con,$viewLand);
-		
+			$Landinfo=array();
+			$Landinfo=getLandInfo($REUN);
+			$IDNumber = $Landinfo[7];
 
-		if(!$result){
-			die("Error: ".mysqli_erron($con));
-		}
+			//user info
+			$firstName = $Landinfo[0];
+			$middleName = $Landinfo[1];
+			$lastName = $Landinfo[2];
+			$nationality = $Landinfo[3];
+			$share = $Landinfo[4];
+			$address = $Landinfo[5];
+			$IDType = $Landinfo[6];
+			$IDdate = $Landinfo[8];
+			
 
-		$row = mysqli_fetch_array($result);
-	
-		$IDNumber = $row["IDNumber"];
-		
-		$userInfo = "SELECT * FROM users WHERE users.ID = $IDNumber";
-		$userRes = mysqli_query($con,$userInfo);
-		$userRow = mysqli_fetch_array($userRes);
+			//land info
+			$pieceNumber = $Landinfo[9];
+			$blockNumber = $Landinfo[10];
+			$planNumber = $Landinfo[11];
+			$neighborhoodName = $Landinfo[12];
+			$city = $Landinfo[13];
+			
+			$unitType = $Landinfo[15];
+			$deedNumber = $Landinfo[16];
+			$deedDate = $Landinfo[17];
+			$courtIssued = $Landinfo[18];
+			$spaceInNumbers = $Landinfo[19];
+			$spaceInWriting = $Landinfo[20];
+			$bordersNorth = $Landinfo[21];
+			$bordersSouth = $Landinfo[22];
+			$bordersEast = $Landinfo[23];
+			$bordersWest = $Landinfo[24];
+			$lengthNorth = $Landinfo[25];
+			$lengthSouth = $Landinfo[26];
+			$lengthEast = $Landinfo[27];
+			$lengthWest = $Landinfo[28];
+			
+			//location info
+			$LongitudeA = $Landinfo[29];
+			$LongitudeB = $Landinfo[30];
+			$LongitudeC = $Landinfo[31];
+			$LongitudeD = $Landinfo[32];
+			$LatitudeA = $Landinfo[33];
+			$LatitudeB = $Landinfo[34];
+			$LatitudeC = $Landinfo[35];
+			$LatitudeD = $Landinfo[36];
+			$angleA = $Landinfo[37];
+			$angleB = $Landinfo[38];
+			$angleC = $Landinfo[39];
+			$angleD = $Landinfo[40];
+			$Lats   = $Landinfo[41];
+			$Longs  = $Landinfo[42];
 
-		//user info
-		$firstName = $userRow["firstName"];
-		$middleName = $userRow["middleName"];
-		$lastName = $userRow["lastName"];
-		$nationality = $userRow["nationality"];
-		$address = $userRow["address"];
-		$IDType = $userRow["IDType"];
-		$IDdate = $userRow["IDdate"];
-		
-		$share = $row["share"];
+			$lat = (double)$Lats;
+			$long = (double)$Longs;
 
-		//land info
-		$pieceNumber = $row["pieceNumber"];
-		$blockNumber = $row["blockNumber"];
-		$planNumber = $row["planNumber"];
-		$neighborhoodName = $row["neighborhoodName"];
-		$city = $row["city"];
-		
-		$unitType = $row["unitType"];
-		$deedNumber = $row["deedNumber"];
-		$deedDate = $row["deedDate"];
-		$courtIssued = $row["courtIssued"];
-		$spaceInNumbers = $row["spaceInNumbers"];
-		$spaceInWriting = $row["spaceInWriting"];
-		$bordersNorth = $row["bordersNorth"];
-		$bordersSouth = $row["bordersSouth"];
-		$bordersEast = $row["bordersEast"];
-		$bordersWest = $row["bordersWest"];
-		$lengthNorth = $row["lengthNorth"];
-		$lengthSouth = $row["lengthSouth"];
-		$lengthEast = $row["lengthEast"];
-		$lengthWest = $row["lengthWest"];
-		//location info
-
-		$LongitudeA = $row["LongitudeA"];
-		$LongitudeB = $row["LongitudeB"];
-		$LongitudeC = $row["LongitudeC"];
-		$LongitudeD = $row["LongitudeD"];
-		$LatitudeA = $row["LatitudeA"];
-		$LatitudeB = $row["LatitudeB"];
-		$LatitudeC = $row["LatitudeC"];
-		$LatitudeD = $row["LatitudeD"];
-		$angleA = $row["angleA"];
-		$angleB = $row["angleB"];
-		$angleC = $row["angleC"];
-		$angleD = $row["angleD"];
-
-		//map info
-		$viewMap = "SELECT * FROM map WHERE REUN = $REUN";
-		$mapRes = mysqli_query($con,$viewMap);
-
-		$mapRow = mysqli_fetch_array($mapRes);
-
-		$REUN = $mapRow["REUN"];
-		$lat = $mapRow["latitude"];
-		$long = $mapRow["longitude"];
 	
 
 	}else{
@@ -435,16 +421,16 @@
 
 			<aside></aside><!--just to make it look better with flex display-->
 			<?php
-					$queryUser="SELECT * FROM UsersLands WHERE UserID='$IDNumber'AND REUN='$REUN'";
-					$resultUser = mysqli_query($con, $queryUser);
-					$count = mysqli_num_rows($resultUser);
-					if ($count > 0){
-						echo"
-								<form method='GET' action='landViewSeller.php'>
-									<input type='hidden' id='REUN' name='REUN' value='$REUN' />
-									<button class='cancel' type='submit'>إلغاء بيع الأرض </button>
-								</form>";
-					}
+					// $queryUser="SELECT * FROM UsersLands WHERE UserID='$IDNumber'AND REUN='$REUN'";
+					// $resultUser = mysqli_query($con, $queryUser);
+					// $count = mysqli_num_rows($resultUser);
+					// if ($count > 0){
+					// 	echo"
+					// 			<form method='GET' action='landViewSeller.php'>
+					// 				<input type='hidden' id='REUN' name='REUN' value='$REUN' />
+					// 				<button class='cancel' type='submit'>إلغاء بيع الأرض </button>
+					// 			</form>";
+					// }
 					?>
 		</main>
 		

@@ -15,6 +15,7 @@
         $share = $_POST["share"];
         $shareS=(string)$share;
         $IDNumber= $_SESSION['loggedUser'];
+        $IDType = $_POST["IDType"];
 
         //land info
         $pieceNumber = $_POST["pieceNumber"];
@@ -48,10 +49,6 @@
         $lengthWest = $_POST["lengthWest"];
 
         $spaceInNumbersS = (string)$spaceInNumbers;
-        // $bordersNorthS = (string)$bordersNorth;
-        // $bordersSouthS = (string)$bordersSouth;
-        // $bordersEastS = (string)$bordersEast;
-        // $bordersWestS = (string)$bordersWest;
         $lengthNorthS = (string)$lengthNorth;
         $lengthSouthS = (string)$lengthSouth;
         $lengthEastS = (string)$lengthEast;
@@ -101,7 +98,7 @@
             $part3='\"IDdate\":\"' .$IDdateS .'\",\"pieceNumber\":\"' .$pieceNumberS .'\",\"blockNumber\":\"' .$blockNumberS .'\",\"planNumber\":\"' .$planNumberS .'\",\"neighborhoodName\":\"' .$neighborhoodName .'\",';
             $part4='\"city\":\"' .$city .'\",\"reun\":\"' .$REUN .'\",\"unitType\":\"' .$unitType .'\",\"DeedNumber\":\"' .$deedNumber .'\",\"deedDate\":\"' .$deedDate .'\",';
             $part5='\"courtIssued\":\"' .$courtIssued .'\",\"spaceInNumbers\":\"' .$spaceInNumbersS .'\",\"spaceInWriting\":\"' .$spaceInWriting .'\",';
-            $part6='\"bordersNorth\":\"' .$bordersNorthS .'\",\"bordersSouth\":\"' .$bordersSouthS .'\",\"bordersEast\":\"' .$bordersEastS .'\",\"bordersWest\":\"' .$bordersWestS .'\",';
+            $part6='\"bordersNorth\":\"' .$bordersNorth .'\",\"bordersSouth\":\"' .$bordersSouth .'\",\"bordersEast\":\"' .$bordersEast .'\",\"bordersWest\":\"' .$bordersWest .'\",';
             $part7='\"lengthNorth\":\"' .$lengthNorthS .'\",\"lengthSouth\":\"' .$lengthSouthS .'\",\"lengthEast\":\"' .$lengthEastS .'\",\"lengthWest\":\"' .$lengthWestS .'\",';
             $part8='\"LongitudeA\":\"' .$LongitudeA .'\",\"LongitudeB\":\"' .$LongitudeB.'\",\"LongitudeC\":\"' .$LongitudeC .'\",\"LongitudeD\":\"' .$LongitudeD .'\",';
             $part9='\"LatitudeA\":\"' .$LatitudeA .'\",\"LatitudeB\":\"' .$LatitudeB .'\",\"LatitudeC\":\"' .$LatitudeC .'\",\"LatitudeD\":\"' .$LatitudeD .'\",';

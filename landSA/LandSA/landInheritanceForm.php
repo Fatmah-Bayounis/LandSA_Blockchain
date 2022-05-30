@@ -28,15 +28,13 @@ if(isset($_SESSION['loggedUser']) && $_SESSION['loggedUser']==true){
 			  echo "<script>alert('رقم هوية المالك غير صحيح')</script>";
 
             }else{      
-				// $stmt=$con->prepare("INSERT INTO inheritancerecord (courtOrder,OwnerID,REUN,requestID,UserID) VALUES (?,?,?,?,?)");
-                // $stmt -> bind_param("sssss",$courtOrder,$OwnerID,$REUN,$requestID,$_SESSION['loggedUser']);
-                // $stmt->execute();
 
 				//Check that the OLD owner is a user in the website
 				$queryUser="SELECT * FROM UsersLands WHERE UserID='$OwnerID'AND REUN='$REUN'";
 				$resultUser = mysqli_query($con, $queryUser);
 				$count = mysqli_num_rows($resultUser);
 				if ($count > 0){
+
 					//Get the NEW owner info
 					$queryNOwner="SELECT * FROM users WHERE ID='$NOwnerID'";
 					$resultNOwner = mysqli_query($con, $queryNOwner);
@@ -52,7 +50,7 @@ if(isset($_SESSION['loggedUser']) && $_SESSION['loggedUser']==true){
 					$newOwnerIDdate = $row["IDdate"];
 					$todayDate = date("Y-m-d");
 
-					$NOwner_Data="{\"newOwnerFirstName\":\" $newOwnerFirstName \",\"newOwnerMiddleName\":\" $newOwnerMiddleName  \",\"newOwnerLastName\":\" $newOwnerLastName \",\"newOwnerNationality\":\"$newOwnerNationality\" ,\"newOwnerShare\":\" $newOwnerShare \",\"newOwnerAddress\":\" $newOwnerAddress \",\"newOwnerIDType\":\" $newOwnerIDType \",\"newOwnerIDNumber\":\" $NOwnerID \",\"newOwnerIDdate\":\"$newOwnerIDdate\",\"todayDate\":\"$todayDate\",\"transactionType\":\"Inheritance\"}";
+					$NOwner_Data="{\"newOwnerFirstName\":\"$newOwnerFirstName\",\"newOwnerMiddleName\":\"$newOwnerMiddleName \",\"newOwnerLastName\":\"$newOwnerLastName\",\"newOwnerNationality\":\"$newOwnerNationality\",\"newOwnerShare\":\" $newOwnerShare \",\"newOwnerAddress\":\"$newOwnerAddress\",\"newOwnerIDType\":\"$newOwnerIDType\",\"newOwnerIDNumber\":\"$NOwnerID\",\"newOwnerIDdate\":\"$newOwnerIDdate\",\"todayDate\":\"$todayDate\",\"transactionType\":\"Inheritance\"}";
 
 					$Land_REUN=$REUN;
 					$BChainResponse=UpdateLandOwner($Land_REUN,$NOwner_Data);
@@ -62,17 +60,28 @@ if(isset($_SESSION['loggedUser']) && $_SESSION['loggedUser']==true){
 
 						$sqlInhirit = "UPDATE UsersLands SET UserID = '$NOwnerID' WHERE REUN = '$REUN'";
 						$resultNOwner = mysqli_query($con, $sqlInhirit);
+
+						$DeleteSQL = "DELETE FROM `landrecord` WHERE REUN='$REUN'";
+						$DeleteQuery = mysqli_query($con, $DeleteSQL);
+						$DeleteSQL = "DELETE FROM `landsonsale` WHERE REUN='$REUN'";
+						$DeleteQuery = mysqli_query($con, $DeleteSQL);
+						$DeleteSQL = "DELETE FROM `map` WHERE REUN='$REUN'";
+						$DeleteQuery = mysqli_query($con, $DeleteSQL);
+						$DeleteSQL = "DELETE FROM `offers` WHERE REUN='$REUN'";
+						$DeleteQuery = mysqli_query($con, $DeleteSQL);
 					
-						$stmt=$con->prepare("INSERT INTO inheritancerecord (ownerID,courtOrder,REUN,requestID,UserID) VALUES (?,?,?,?,?)");
-						$stmt -> bind_param("sssss",$OwnerID,$courtOrder,$REUN,$requestID,$NOwnerID);
-						$resultGift=mysqli_stmt_execute($stmt);	
+						$insert = "INSERT INTO inheritancerecord (ownerID,courtOrder,REUN,requestID,UserID) value(?,?,?,?,?)";
+						$stmt = mysqli_prepare($con,$insert);
+						mysqli_stmt_bind_param($stmt,"sssss",$OwnerID,$courtOrder,$REUN,$requestID,$NOwnerID);
+						$resultInhirit=mysqli_stmt_execute($stmt);	
 
 						echo "<script>alert('تم إرسال الطلب بنجاح')</script>";
 
 					}else{echo "<script>alert('لم يتم استقبال الطلب بنجاح رجاءً حاول مره اخرى')</script>";}
 					
 				}else{ 	echo "<script>alert('المسخدم غير مسجل بالموقع او المعلومات غير صحيحه')</script>";
-						echo "<script>setTimeout(\"location.href = 'controlLandspage.php';\",1500);</script>";}
+						echo "<script>setTimeout(\"location.href = 'controlLandspage.php';\");</script>";
+					}
                 }
 
         }

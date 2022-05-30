@@ -41,19 +41,6 @@
 			$Landinfo=getLandInfo($REUN);
 			$IDNumber = $Landinfo[7];
 
-
-			// if(!$result){
-			// 	die("Error: ".mysqli_erron($con));
-			// }
-
-			// $row = mysqli_fetch_array($result);
-		
-			// $IDNumber = $row["IDNumber"];
-			
-			// $userInfo = "SELECT * FROM users WHERE users.ID = $IDNumber";
-			// $userRes = mysqli_query($con,$userInfo);
-			// $userRow = mysqli_fetch_array($userRes);
-
 			//user info
 			$firstName = $Landinfo[0];
 			$middleName = $Landinfo[1];
@@ -103,18 +90,8 @@
 			$Lats   = $Landinfo[41];
 			$Longs  = $Landinfo[42];
 
-			// //map info
-			// $viewMap = "SELECT * FROM map WHERE REUN = $REUN";
-			// $mapRes = mysqli_query($con,$viewMap);
-
-			// $mapRow = mysqli_fetch_array($mapRes);
-
-			// $REUN = $mapRow["REUN"];
-			// $lat = $mapRow["latitude"];
-			// $long = $mapRow["longitude"];
-
-			$lat = (int)$Lats;
-			$long = (int)$Longs;
+			$lat = (double)$Lats;
+			$long = (double)$Longs;
 		}
 
 	}else{

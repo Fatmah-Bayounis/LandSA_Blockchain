@@ -62,12 +62,21 @@ $REUN=null;
 						mysqli_stmt_bind_param($stmt,"ssssssss",$requestID,$NOwnerID,$NOwnerFirstName,$NOwnerMiddleName,$NOwnerLastName,$NOwnerPhone,$REUN,$_SESSION['loggedUser']);
 						$resultGift=mysqli_stmt_execute($stmt);	
 						
+						$DeleteSQL = "DELETE FROM `landrecord` WHERE REUN='$REUN'";
+						$DeleteQuery = mysqli_query($con, $DeleteSQL);
+						$DeleteSQL = "DELETE FROM `landsonsale` WHERE REUN='$REUN'";
+						$DeleteQuery = mysqli_query($con, $DeleteSQL);
+						$DeleteSQL = "DELETE FROM `map` WHERE REUN='$REUN'";
+						$DeleteQuery = mysqli_query($con, $DeleteSQL);
+						$DeleteSQL = "DELETE FROM `offers` WHERE REUN='$REUN'";
+						$DeleteQuery = mysqli_query($con, $DeleteSQL);
+						
 						$sqlGift = "UPDATE UsersLands SET UserID = '$NOwnerID' WHERE REUN = '$REUN'";
             			$queryGift = mysqli_query($con, $sqlGift);
 				
 						if($queryGift){	
 							echo "<script>alert('تم إرسال الطلب بنجاح')</script>";
-							echo "<script>setTimeout(\"location.href = 'controlLandsPage.php';\",1500);</script>";
+							echo "<script>setTimeout(\"location.href = 'controlLandspage.php';\");</script>";
 						}else {
 							die("Error: ".mysqli_stmt_error($stmt));
 						}

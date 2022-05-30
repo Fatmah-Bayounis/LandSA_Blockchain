@@ -14,54 +14,83 @@
     $REUN=$_POST['REUN'];
     $OfferID = $_POST['OfferID'];
     $NOwnerID=$_POST['NOwnerID'];
+    $landPrice=$_POST['landPrice'];
 
     
     $query = "UPDATE offers set offerStatus= '1' where OfferID ='$OfferID'";    
     $query2 = "UPDATE offers set offerStatus= '2' WHERE REUN = '$REUN' AND OfferID != '$OfferID';";
 
-       $res2 = mysqli_query($con,$query);
-       $res = mysqli_query($con,$query2);
+    $res2 = mysqli_query($con,$query);
+    $res = mysqli_query($con,$query2);
 
-      $queryNOwner="SELECT * FROM users WHERE ID='$NOwnerID'"; // AND $NOwnerName=`Name` AND $NOwnerPhone=`phoneNum`;
-			$resultNOwner = mysqli_query($con, $queryNOwner);
+    //Get the information of current owner
+    $queryCOwner="SELECT * FROM users WHERE ID='$ID'";
+    $resultCOwner = mysqli_query($con, $queryCOwner);
+    $rowCOwner = mysqli_fetch_array($resultCOwner, MYSQLI_ASSOC);
+    $curOwnerFirstName = $rowCOwner["firstName"];
+    $curOwnerMiddleName = $rowCOwner["middleName"];
+    $curOwnerLastName = $rowCOwner["lastName"];
+    $curOwnerNationality = $rowCOwner["nationality"];
+    $curOwnerAddress = $rowCOwner["address"];
+    $curOwnerIBAN = $rowCOwner["IBAN"];
 
-      $rowNOwner = mysqli_fetch_array($resultNOwner, MYSQLI_ASSOC);
-      $newOwnerFirstName = $rowNOwner["firstName"];
-      $newOwnerMiddleName = $rowNOwner["middleName"];
-      $newOwnerLastName = $rowNOwner["lastName"];
-      $newOwnerNationality = $rowNOwner["nationality"];
-      $newOwnerShare = "100%";
-      $newOwnerAddress = $rowNOwner["address"];
-      $newOwnerIDType = $rowNOwner["IDType"];
-      $newOwnerIDNumber = $rowNOwner["ID"];
-      $newOwnerIDdate = $rowNOwner["IDdate"];
-      $todayDate = date("Y-m-d");
-
+    //Get the information of Current owner
+    $queryNOwner="SELECT * FROM users WHERE ID='$NOwnerID'";
+    $resultNOwner = mysqli_query($con, $queryNOwner);
+    $rowNOwner = mysqli_fetch_array($resultNOwner, MYSQLI_ASSOC);
+    $newOwnerFirstName = $rowNOwner["firstName"];
+    $newOwnerMiddleName = $rowNOwner["middleName"];
+    $newOwnerLastName = $rowNOwner["lastName"];
+    $newOwnerNationality = $rowNOwner["nationality"];
+    $newOwnerShare = "100%";
+    $newOwnerAddress = $rowNOwner["address"];
+    $newOwnerIDType = $rowNOwner["IDType"];
+    $newOwnerIDNumber = $rowNOwner["ID"];
+    $newOwnerIDdate = $rowNOwner["IDdate"];
+    $newOwnerIBAN = $rowNOwner["IBAN"];
       
-      if ($con->query($query)==TRUE) {
+    $todayDate = date("Y-m-d");
 
-        $NOwner_Data="{\"newOwnerFirstName\":\" $newOwnerFirstName \",\"newOwnerMiddleName\":\" $newOwnerMiddleName  \",\"newOwnerLastName\":\" $newOwnerLastName \",\"newOwnerNationality\":\" $newOwnerNationality \" ,\"newOwnerShare\":\" $newOwnerShare \",\"newOwnerAddress\":\" $newOwnerAddress \",\"newOwnerIDType\":\" $newOwnerIDType \",\"newOwnerIDNumber\":\" $NOwnerID \",\"newOwnerIDdate\":\"$newOwnerIDdate\",\"todayDate\":\"$todayDate\",\"transactionType\":\"Sell\"}";
-        $Land_REUN=$REUN;
-        $BChainResponse=UpdateLandOwner($Land_REUN,$NOwner_Data);
-        print($BChainResponse);
+    $queryLand="SELECT * FROM landrecord WHERE REUN='$REUN'";
+    $resultLand = mysqli_query($con, $queryLand);
+    $rowLand = mysqli_fetch_array($resultLand, MYSQLI_ASSOC);
+    $neighborhoodName = $rowLand["neighborhoodName"];
+    $city = $rowLand["city"];
+    $deedNumber = $rowLand["deedNumber"];
 
-        if($BChainResponse == '1'){
-          $DeleteSQL = "DELETE FROM `landrecord` WHERE REUN='$REUN'";
-          $DeleteQuery = mysqli_query($con, $DeleteSQL);
-          $DeleteSQL = "DELETE FROM `landsonsale` WHERE REUN='$REUN'";
-          $DeleteQuery = mysqli_query($con, $DeleteSQL);
-          
-          $sqlSell = "UPDATE UsersLands SET UserID = '$NOwnerID' WHERE REUN = '$REUN'";
-          $querySell = mysqli_query($con, $sqlSell);
+
+    if ($con->query($query)==TRUE) {
+
+      $NOwner_Data="{\"newOwnerFirstName\":\" $newOwnerFirstName \",\"newOwnerMiddleName\":\" $newOwnerMiddleName  \",\"newOwnerLastName\":\" $newOwnerLastName \",\"newOwnerNationality\":\" $newOwnerNationality \" ,\"newOwnerShare\":\" $newOwnerShare \",\"newOwnerAddress\":\" $newOwnerAddress \",\"newOwnerIDType\":\" $newOwnerIDType \",\"newOwnerIDNumber\":\" $NOwnerID \",\"newOwnerIDdate\":\"$newOwnerIDdate\",\"todayDate\":\"$todayDate\",\"transactionType\":\"Sell\"}";
+      $Land_REUN=$REUN;
+      $BChainResponse=UpdateLandOwner($Land_REUN,$NOwner_Data);
+      print($BChainResponse);
+
+      if($BChainResponse == '1'){
+        $sqlBell ="INSERT INTO `Bill`(`OwnerID`, `BuyerID`, `REUN`, `SellerFName`, `SellerMName`, `SellerLName`, `BuyerFName`, `BuyerMName`, `BuyerLName`, `SellerIBAN`, `BuyerIBAN`, `offerID`, `landPrice`, `address`, `city`, `deedNumber`, `deedDate`) 
+        VALUES ('$ID','$NOwnerID','$REUN','$curOwnerFirstName','$curOwnerMiddleName','$curOwnerLastName','$newOwnerFirstName','$newOwnerMiddleName','$newOwnerLastName','$curOwnerIBAN','$newOwnerIBAN','$OfferID','$landPrice','$neighborhoodName','$city','$deedNumber','$todayDate')";
+        $querySell = mysqli_query($con, $sqlBell);
+
+        $DeleteSQL = "DELETE FROM `landrecord` WHERE REUN='$REUN'";
+        $DeleteQuery = mysqli_query($con, $DeleteSQL);
+        $DeleteSQL = "DELETE FROM `landsonsale` WHERE REUN='$REUN'";
+        $DeleteQuery = mysqli_query($con, $DeleteSQL);
+        $DeleteSQL = "DELETE FROM `map` WHERE REUN='$REUN'";
+        $DeleteQuery = mysqli_query($con, $DeleteSQL);
+        $DeleteSQL = "DELETE FROM `offers` WHERE REUN='$REUN'";
+        $DeleteQuery = mysqli_query($con, $DeleteSQL);
+        
+        $sqlSell = "UPDATE UsersLands SET UserID = '$NOwnerID' WHERE REUN = '$REUN'";
+        $querySell = mysqli_query($con, $sqlSell);
 
           if($querySell){	
             echo "<script>alert('تم إرسال الطلب بنجاح')</script>";
-            echo "<script>setTimeout(\"location.href = 'controlLandsPage.php';\",1500);</script>";
+            echo "<script>setTimeout(\"location.href = 'controlLandspage.php';\");</script>";
           }else {
             die("Error: ".mysqli_stmt_error($stmt));
           }
         }
-      } else {
+    } else {
          echo "Eroo". $query. "<br>" . $con->error;
        }        
     } 
@@ -239,7 +268,8 @@
                         <form method= "post" action="viewOffers.php">
                           <?php echo" <input type='hidden' id='NOwnerID' name='NOwnerID' value='$rows[BuyerID]';/> " ;?>
                             <?php echo" <input type='hidden' id='OfferID' name='OfferID' value='$rows[OfferID]';/> " ;?>
-                            <?php echo" <input type='hidden' id='REUN' name='REUN' value='$rows[REUN]';/> " ;?>
+                            <?php echo" <input type='hidden' id='REUN' name='REUN' value='$rows[REUN]';/> ";?>
+                            <input type='hidden' id='landPrice' name='landPrice' value='<?php echo $rows['landPrice']; ?>';/>
                             <td>
                                 <button><input name="accept" type="submit" value="قبول" ></button>
                                 <button class="bt"><input style="color: #ffffff;" name="reject" type="submit" value="رفض" ></button>
@@ -266,7 +296,7 @@
                         
                         
                     <?php 
-                        $query="SELECT * from offers WHERE offerStatus = 1 AND OwnerID = $ID"; 
+                        $query="SELECT * from Bill WHERE OwnerID = $ID"; 
                         $result = $con->query($query); 
                         $count = mysqli_num_rows($result);
 			                  if ($count >0){
@@ -280,6 +310,7 @@
                         <td><?php echo $rows['landPrice']; ?></td> 
                         <?php echo" <input type='hidden' id='OfferID' name='OfferID' value='$rows[OfferID]';/> " ;?>
                         <?php echo" <input type='hidden' id='REUN' name='REUN' value='$rows[REUN]';/> " ;?>
+                       
                         <td>
                           <button><input type="submit" value="فاتورة"  onclick="document.getElementById('id01').style.display='block'"></button>
                         </td>
@@ -298,12 +329,11 @@
                     <table>
                       <tr>
                         <th>رقم الفاتورة:  </th>
-                        <td><?php print('1----<br>');
-                        $billInfo = "SELECT * FROM `bill` WHERE 1";
+                        <td><?php 
+                        $billInfo = "SELECT * FROM `Bill` WHERE 1";
                         $billRes = mysqli_query($con, $billInfo);
                         $count = mysqli_num_rows($billRes);
                       	if ($count >0){
-print('2----<br>');
                           $billRow = mysqli_fetch_array($billRes);
                           echo $billRow['offerID'];
                           $REUN = $billRow['REUN'];
@@ -338,7 +368,7 @@ print('2----<br>');
                           $spaceInNumbers = $Landinfo[19];
   
                           $space = $spaceInNumbers;
-                          $price=$billRow['landPrice'];;
+                          $price=$billRow['landPrice'];
                         
                         ?></td>
                         <th>تاريخ الفاتورة:  </th>
@@ -358,9 +388,9 @@ print('2----<br>');
                       </tr>
                       <tr>
                         <th>رقم ايبان البائع: </th>
-                        <td><?php echo $billRow['BuyerID']; ?></td>
+                        <td><?php echo $billRow['SellerIBAN']; ?></td>
                         <th>رقم ايبان المشتري: </th>
-                        <td><?php echo $billRow['BuyerID']; ?></td>
+                        <td><?php echo $billRow['BuyerIBAN']; ?></td>
                       </tr>
                       <tr>
                         <th colspan="2">الوصف</th>
@@ -371,7 +401,7 @@ print('2----<br>');
                       </tr>
                       <tr>
                         <th colspan="2">الاجمالي بدون الضرية:</th>
-                        <td colspan="2"><?php echo (int)$price; ?></td>
+                        <td colspan="2"><?php echo $price; ?></td>
                       </tr>
                       <tr>
                         <th colspan="2">ضريبة القيمة المضافة:</th>
@@ -392,7 +422,7 @@ print('2----<br>');
     </main>
 
     <!-- footer -->
-    <div w3-include-html="components/footer.php"></div>
+    <!-- <div w3-include-html="components/footer.php"></div> -->
     <?php 
     // include "components/footer.php";
     ?>

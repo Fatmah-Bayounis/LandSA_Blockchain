@@ -17,9 +17,10 @@ $db = mysqli_select_db($con,"landsa_DB") or die("Error: Can't Connect to DB");
 
 
 			//Check that their are no repeted requests
-			$query2="SELECT * FROM landrecord WHERE REUN='$REUN'";
+			$query2="SELECT * FROM `landrecord` WHERE REUN='$REUN'";
 			$result2 = mysqli_query($con, $query2);
 			$count2 = mysqli_num_rows($result2);
+
 	  
 			if($count2 == 0){
 				$Landinfo=array();
@@ -76,7 +77,7 @@ $db = mysqli_select_db($con,"landsa_DB") or die("Error: Can't Connect to DB");
 				
 			 	// Relational DB insert
 				$insertLand = "INSERT INTO `landrecord` (`REUN`, `landState`, `firstName`, `middleName`, `lastName`, `share`, `IDNumber`, `pieceNumber`, `blockNumber`, `planNumber`, `neighborhoodName`, `city`, `unitType`, `deedNumber`, `deedDate`, `courtIssued`, `requestID`) 
-				VALUES ('$REUN',b'0','$firstName', '$middleName', '$lastName', '$share', '$IDNumber', '$pieceNumber', '$blockNumber', '$planNumber', '$neighborhoodName', '$city', '$unitType', '$deedNumber', '$deedDate', '$courtIssued','')";
+				VALUES ('$REUN',b'0','$firstName', '$middleName', '$lastName', '$share', '$ID', '$pieceNumber', '$blockNumber', '$planNumber', '$neighborhoodName', '$city', '$unitType', '$deedNumber', '$deedDate', '$courtIssued','')";
 				$query_insertL = mysqli_query($con, $insertLand);
 				
 				 if($query_insertL){
@@ -103,7 +104,7 @@ $db = mysqli_select_db($con,"landsa_DB") or die("Error: Can't Connect to DB");
 				  }
 			}else{
 				echo "<script>alert('تم عرض الأرض للبيع مسبقًا')</script>";
-				echo "<script>setTimeout(\"location.href = 'controlLandspage.php';\",1500);</script>";
+				echo "<script>setTimeout(\"location.href = 'controlLandspage.php';\");</script>";
 			}
 		}
 
@@ -116,7 +117,7 @@ $db = mysqli_select_db($con,"landsa_DB") or die("Error: Can't Connect to DB");
 			$res2 = mysqli_query($con,$query);
 			if ($con->query($query)==TRUE) {
 				echo "<script>alert('تم تغيير السعر بنجاح')</script>";
-				echo "<script>setTimeout(\"location.href = 'controlLandspage.php';\",1500);</script>";
+				echo "<script>setTimeout(\"location.href = 'controlLandspage.php';\");</script>";
 			} else {
 				echo "Eroo". $query. "<br>" . $con->error;
 			}
@@ -125,7 +126,7 @@ $db = mysqli_select_db($con,"landsa_DB") or die("Error: Can't Connect to DB");
 		  #else if the user is NOT logedin
 	}else{
 		echo "<script>alert('الرجاء تسجيل الدخول اولاً')</script>";
-		echo "<script>setTimeout(\"location.href = '../log/login.php';\",1500);</script>";
+		echo "<script>setTimeout(\"location.href = 'controlLandspage.php';\");</script>";
 	}
 
 ?>
