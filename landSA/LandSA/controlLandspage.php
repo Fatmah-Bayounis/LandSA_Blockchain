@@ -316,7 +316,7 @@ $db = mysqli_select_db($con,"landsa_DB") or die("Error: Can't Connect to DB");
 	<div class="content">
 
 		<h1>قائمة الاراضي</h1><br>
-		<div class="landList"></div>
+		<div class="landList">
 			<?php
 				// $sql_lands = "SELECT `landrecord`.REUN,deedDate, deedNumber,unitType,city,neighborhoodName,spaceInNumbers,landState FROM `landrecord`,`landinfo` WHERE IDNumber ='$ID' AND `landrecord`.REUN=`landinfo`.REUN";
 				// $result = $con->query($sql_lands);
@@ -382,7 +382,10 @@ $db = mysqli_select_db($con,"landsa_DB") or die("Error: Can't Connect to DB");
 							echo "<tr>
 								<td><b>السعر:</b></td>
 								<td id=price><b>$row2[price]</b>
-									<button class='ch' name='price' onclick='document.getElementById(`id02`).style.display=`block`'>تعديل</button>
+									<form method='GET' action='changePrice.php'>
+										<input type='hidden' id='REUN' name='REUN' value='$REUN' />
+										<button class='ch' name='price' type='submit'>تعديل</button>
+									</form>
 								</td>
 							</tr>";
 							
@@ -397,7 +400,11 @@ $db = mysqli_select_db($con,"landsa_DB") or die("Error: Can't Connect to DB");
 							$sql_lands_Sale = "SELECT REUN FROM landrecord WHERE IDNumber ='$ID' AND REUN = '$REUN' "; ////////////////////###Reviwe the condition///////////////
 							$result_Sale = $con->query($sql_lands_Sale);
 							if($result_Sale->num_rows < 1){
-								echo"<button onclick='document.getElementById(`id01`).style.display=`block`'>بيع</button>";
+								echo"
+								<form method='GET' action='setPrice.php'>
+									<input type='hidden' id='REUN' name='REUN' value='$REUN' />
+									<button type='submit'>بيع</button>
+								</form>";
 
 								echo"
 								<form method='GET' action='giftLandForm.php'>
@@ -413,77 +420,22 @@ $db = mysqli_select_db($con,"landsa_DB") or die("Error: Can't Connect to DB");
 							echo"</div>";
 
 					echo "</div>";
-					echo "
-					<div id='id01' class='overlay-style'>
-						<div class='block'>
-							<span onclick='document.getElementById(`id01`).style.display=`none`' class='close' title='Close Modal'>&times;</span>
-							<div style='text-align:center;margin: 5%;'>
-							<h2> أدخل سعر لبيع الارض رقم : $REUN  </h2>
-							<form method='POST'>
-								<input type='hidden' id='REUN' name='REUN' value='$REUN' />
-								<input type='text' id='price' name='price' required><br><br>
-							<button><input type='submit' name='setPrice' value='إرسال' ></button>
-							</form>
-							<br>
-							</div>
-						</div>
-					</div>
-					";
-					echo "
-					<div id='id02' class='overlay-style'>
-						<div class='block'>
-							<span onclick='document.getElementById(`id02`).style.display=`none`' class='close' title='Close Modal'>&times;</span>
-							<div style='text-align:center;margin: 5%;'>
-							<form method='POST'>
-							<input type='hidden' id='REUN' name='REUN' value='$REUN' />
-							<table class='Namefeild'>
-								<tr>
-								<td><label for='price'>أدخل السعر  الجديد</label></td>
-								</tr>
-								<tr>
-								<td><input type='text' id='price' name='price' required></td>
-								</tr>
-							</table><br><br>
-							<button><input type='submit' name='updatePrice' value='إرسال' ></button>
-							</form>
-							</div>
-						</div>
-					</div>
-					";
 
 					}
 				} else {
 					echo "<div class='land' style='padding:30px 85px;'>";
-								echo "عفوًا لا توجد أراضي لديك";
-								echo"</div>";
+					echo "عفوًا لا توجد أراضي لديك";
+					echo"</div>";
 				}
 			?>
 			
+			</div>
 		</div>
-	</div>
-	<aside></aside>
-</main>
+		<aside></aside>
+	</main>
 
         <!-- footer -->
 		<div w3-include-html="components/footer.php"></div>
-		<script>
-			// Get the modal
-			var modal1 = document.getElementById('id01');
-			var modal2 = document.getElementById('id02');
-
-			// When the user clicks anywhere outside of the modal, close it
-			window.onclick = function(event) {
-				if (event.target == modal1) {
-					modal1.style.display = "none";
-				}
-			}
-			// When the user clicks anywhere outside of the modal, close it
-			window.onclick = function(event) {
-				if (event.target == modal2) {
-					modal2.style.display = "none";
-				}
-			}
-		</script>
 	<script>
 		includeHTML();
 	</script>
