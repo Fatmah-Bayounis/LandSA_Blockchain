@@ -11,20 +11,22 @@
 	if(!empty($_GET['city']) && empty($_GET['price'])){
 		//if the the user search for city
 		$city = $_GET['city'];
-		$sql_lands = "SELECT * FROM searchEngine WHERE  city = '$city'";
-		$result = $con->query($sql_lands);
+		$sql_lands = "SELECT * FROM searchengine WHERE  city = '$city'";
+		// $result = $con->query($sql_lands);
+		$result = mysqli_query($con, $sql_lands);
+        // $count2 = mysqli_num_rows($result2);
 
 	}elseif(empty($_GET['city']) && !empty($_GET['price'])){
 		//if the the user search for price
 		$price = $_GET['price'];
-		$sql_lands = "SELECT * FROM searchEngine WHERE price = '$price'";
+		$sql_lands = "SELECT * FROM searchengine WHERE price = '$price'";
 		$result = $con->query($sql_lands);
 
 	}elseif(!empty($_GET['city']) && !empty($_GET['price'])){
 		//if the the user search for city and price
 		$city = $_GET['city'];
 		$price = $_GET['price'];
-		$sql_lands = "SELECT * FROM searchEngine WHERE price = '$price' AND city='$city'";
+		$sql_lands = "SELECT * FROM searchengine WHERE price = '$price' AND city='$city'";
 		$result = $con->query($sql_lands);
 
 	}elseif(empty($_GET['city']) && empty($_GET['price'])){
@@ -46,19 +48,19 @@
 		$area = $_GET["area"];
 
 		if($area == "center"){
-			$sql_lands = "SELECT * FROM searchEngine WHERE city = 'الرياض'";
+			$sql_lands = "SELECT * FROM searchengine WHERE city = 'الرياض'";
 			$result = $con->query($sql_lands);
 		}elseif($area == "north"){
-			$sql_lands = "SELECT * FROM searchEngine WHERE city = 'تبوك'";
+			$sql_lands = "SELECT * FROM searchengine WHERE city = 'تبوك'";
 			$result = $con->query($sql_lands);
 		}elseif($area == "south"){
-			$sql_lands = "SELECT * FROM searchEngine WHERE city = 'الباحة'";
+			$sql_lands = "SELECT * FROM searchengine WHERE city = 'الباحة'";
 			$result = $con->query($sql_lands);
 		}elseif($area == "east"){
-			$sql_lands = "SELECT * FROM searchEngine WHERE city = 'الباحة'";
+			$sql_lands = "SELECT * FROM searchengine WHERE city = 'الباحة'";
 			$result = $con->query($sql_lands);
 		}elseif($area == "west"){
-			$sql_lands = "SELECT * FROM searchEngine WHERE city = 'مكة المكرمة' OR city = 'المدينة المنورة' OR city = 'جدة'";
+			$sql_lands = "SELECT * FROM searchengine WHERE city = 'مكة المكرمة' OR city = 'المدينة المنورة' OR city = 'جدة'";
 			$result = $con->query($sql_lands);
 		}else{
 			exit();

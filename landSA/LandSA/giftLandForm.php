@@ -53,7 +53,7 @@ $REUN=null;
 					$NOwner_Data="{\"newOwnerFirstName\":\" $newOwnerFirstName \",\"newOwnerMiddleName\":\" $newOwnerMiddleName  \",\"newOwnerLastName\":\" $newOwnerLastName \",\"newOwnerNationality\":\"$newOwnerNationality\" ,\"newOwnerShare\":\" $newOwnerShare \",\"newOwnerAddress\":\" $newOwnerAddress \",\"newOwnerIDType\":\" $newOwnerIDType \",\"newOwnerIDNumber\":\" $NOwnerID \",\"newOwnerIDdate\":\"$newOwnerIDdate\",\"todayDate\":\"$todayDate\",\"transactionType\":\"Gift\"}";
 					$Land_REUN=$REUN;
 					$BChainResponse=UpdateLandOwner($Land_REUN,$NOwner_Data);
-					print($BChainResponse);
+					// print($BChainResponse);
 
 					if($BChainResponse == '1'){
 						$insertGift = "INSERT INTO giftrecord (requestID,NOwnerID,NOwnerFirstName,NOwnerMiddleName,NOwnerLastName,NOwnerPhone,REUN,UserID) 
